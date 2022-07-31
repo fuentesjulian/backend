@@ -10,12 +10,14 @@ app.get("/", (req, res) => {
   res.send("Home");
 });
 
-app.get("/productos", (req, res) => {
-  products.getAll().then((items) => res.send(JSON.stringify(items)));
+app.get("/productos", async (req, res) => {
+  const allProducts = await products.getAll();
+  res.send(JSON.stringify(allProducts));
 });
 
-app.get("/productoRandom", (req, res) => {
-  products.getRandom().then((item) => res.send(JSON.stringify(item)));
+app.get("/productoRandom", async (req, res) => {
+  const randomProduct = await products.getRandom();
+  res.send(JSON.stringify(randomProduct));
 });
 
 app.get("*", (req, res) => {
